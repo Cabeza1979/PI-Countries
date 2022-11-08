@@ -16,6 +16,12 @@ module.exports = (sequelize) => {
                 type: DataTypes.TEXT,
                 allowNull: false
               },
+      googlemap:{
+                type: DataTypes.TEXT, 
+              },
+      escudo:{
+                type: DataTypes.TEXT, 
+              },
       continente: {
                   type: DataTypes.STRING,
                   allowNull: false
