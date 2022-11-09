@@ -1,10 +1,10 @@
 import axios from "axios";
 import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
-     FILTER_BY_SEARCH, FIND_COUNTRY, GET_POST, GET_ALL_COUNTRIES, GET_MAP,
+     FILTER_BY_SEARCH, FIND_COUNTRY, GET_POST,
       NEXT_PAGE, PREV_PAGE, RESET, FILTER_BY_ACTIVITY, LAST } from "./types";
 
 
-      export function postActivity(data) {
+      export const postActivity=(data) => {
         return function (dispatch) {
             dispatch(getPost());
             axios.get(`/countries/${data.pais}`)
@@ -27,7 +27,7 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
     export function fetchCountry() {
         return function (dispatch) {
             dispatch(getPost());
-            axios.get(`/countries`)
+            axios.get('/countries')
                 .then(data => dispatch(findCountry(data.data)))
         }
     };

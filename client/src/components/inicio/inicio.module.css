@@ -1,0 +1,35 @@
+.btnInicio{
+    margin-bottom: 28%;
+    position: absolute;
+    display: inline-block;
+    bottom: 0px;
+    animation: showButton 5s;
+}
+@keyframes showButton {
+    from {
+        margin-bottom: 60%;
+        filter: opacity(0)
+    } to {
+        margin-bottom: 28%;
+        filter:opacity(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .btnInicio{
+        display: block;
+        margin-left: 35%;
+        margin-bottom: 60%;
+        bottom: 0px;
+        animation: showButton 5s;
+    }
+    @keyframes showButton {
+        from {
+            margin-bottom: 40%;
+            filter: opacity(0)
+        } to {
+            margin-bottom: 60%;
+            filter:opacity(1);
+        }
+    }
+}

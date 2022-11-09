@@ -1,22 +1,19 @@
 import './App.css';
 import { Route } from 'react-router-dom';
-import Countries from './components/countries/countries';
-import Navbar from './components/navbar/navbar';
-import Activities from './components/activities/activities';
-import About from './components/about/about';
+import Navbar from './components/navbar';
+import Inicio from './components/inicio';
+import pPrincipal from './components/render';
+import Details from './components/Details';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-        <Route path="/" exact>
-          <h1>ESTO ES HOME</h1>
-        </Route>
-        <Route exact path="/about"  component={About} />  
-        <Route exact path="/countries"  component={Countries} />  
-        
-        <Route exact path="/activities/:id" render={({match, history, location})=><Activities match={match} />} />
-        {/* <Route path="/" component = {About} /> */}
+       <Route path="/" component={Inicio} exact/>  
+       <Route path="/home" component ={Navbar} exact/>
+       <Route path="/home" component = {pPrincipal} exact />
+       <Route path="/country/:idCountry" exact render={({match}) => <Details match={match} />} />
+
+
     </div>
   );
 }
