@@ -5,9 +5,68 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  background-image: url("./img/background-4.jpg");
+  
+  background-attachment: fixed;
+ /* animation: slider 450s infinite linear;*/
+ background-position: center center;
+     /* El fonde no se repite */
+     background-repeat: no-repeat;
+     /* Fijamos la imagen a la ventana para que no supere el alto de la ventana */
+     background-attachment: fixed;
+     /* El fonde se re-escala automáticamente */
+     background-size: cover;
+     /* Color de fondo si la imagen no se encuentra o mientras se está cargando */
+     Background-color: transparent;
 }
+
+/* body:before {
+	content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.5);
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes slider {
+  to {
+    background-position: 2048px 0;
+  }
+}
+/* Background para ancho máximo de la pantalla física */
+@media only screen and (max-device-width: 767px) {
+  body {
+       background-image: url("./img/background-4.jpg");
+       color: #FFF;
+   }
+  }
+  /* Background para ancho máximo del navegador */
+  @media only screen and (max-width: 767px) {
+  body {
+       background-image: url("./img/background-4.jpg");
+       color: #FFF;
+   }
+  }
+  /* Dimensiones del div principal */
+  #lorem {
+       width: 90%;
+       margin: auto;
+       padding: 10px;
+  }
+  /* Color del Link */
+  a {
+       color: yellow;
+       text-decoration: none;
+  }
+  /* Texto justificado del párrafo */
+  p {
+       text-align: justify;
+  }
