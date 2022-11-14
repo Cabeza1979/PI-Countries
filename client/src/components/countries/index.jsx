@@ -3,7 +3,7 @@ import Card from "../cardCountry";
 import { Link } from "react-router-dom";
 
 const Countries = (props)=>{
-   console.log(props.paises);
+   
     return (
         props.paises.map( country =>
             <Link key={country.nombre} to= {`/country/${country.id}`}>

@@ -4,6 +4,8 @@ import Navbar from './components/navbar';
 import Inicio from './components/inicio';
 import pPrincipal from './components/render';
 import Details from './components/Details';
+import formActivity from './components/formActivity';
+import Activities from './components/activities';
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
        <Route path="/home" component ={Navbar} exact/>
        <Route path="/home" component = {pPrincipal} exact />
        <Route path="/country/:idCountry" exact render={({match}) => <Details match={match} />} />
-
+       <Route path="/activitY" component={formActivity} exact />
+       <Route path="/allactivities" component={Activities} exact />
 
     </div>
   );

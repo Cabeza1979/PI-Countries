@@ -19,7 +19,8 @@ router.get("/:actividad", async(req, res)=>{
         const allActivities = await Activity.findAll({
             where:{nombre : actividad},
             include: Country })
-        res.status(201).json(allActivities);
+           //console.log(allActivities[0].countries);
+        res.status(201).json(allActivities[0].countries);
 
     } catch (error) {
         res.status(401).json(error.message);
@@ -37,7 +38,7 @@ router.post("/", async (req, res) => {
             nombre,
             dificultad,
             duracion,
-            temporada: temporada.toLowerCase(),
+            temporada,
         });
         await newActivity.addCountries(countries);
         res.status(201).json(newActivity)
@@ -62,6 +63,36 @@ router.put("/update/:attribute", async(req, res)=>{
     } catch (error) {
         res.status(401).json(error.message);
     }
+});
+
+router.put("/updatecountries/:idActivity", async(req, res)=>{
+    const idActivity= req.params;
+    const paises= req.body;
+
+    console.log(idActivity.idActivity);
+    try {
+        const idPaises = paises.id;
+        const getActivity = await Activity.findByPk(idActivity.idActivity);
+           
+           for (i=0; i< idPaises.length; i++){
+            await getActivity.addCountries(idPaises[i])
+           }
+           
+        res.status(201).json(idPaises)
+    } catch (error) {
+}
+
 })
+
+router.delete("/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const activity = await Activity.findByPk(id);
+        activity.destroy();
+        res.status(200).send(activity);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
 
 module.exports = router;

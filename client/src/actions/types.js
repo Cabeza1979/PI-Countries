@@ -11,3 +11,5 @@ export const NEXT_PAGE = 'NEXT_PAGE';
 export const PREV_PAGE = 'PREV_PAGE';
 export const RESET = 'RESET';
 export const LAST = 'LAST';
+export const ALL_ACTIVITIES = 'ALL_ACTIVITIES';
+export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';

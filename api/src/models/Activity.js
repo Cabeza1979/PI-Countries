@@ -8,7 +8,8 @@ module.exports = (sequelize) => {
          autoIncrement:true,
          },
     nombre: {
-         type: DataTypes.STRING
+         type: DataTypes.STRING,
+         unique:true
          },
     dificultad: {
          type: DataTypes.INTEGER,
@@ -21,8 +22,8 @@ module.exports = (sequelize) => {
          type: DataTypes.INTEGER
          },
     temporada: {
-         type: DataTypes.ENUM(['verano', 'otoño', 'primavera', 'invierno']),
-         defaultValue: 'invierno'
+         type: DataTypes.ENUM(['Summer', 'Fall', 'Spring', 'Winter']),
+         defaultValue: 'Winter'
          },
   },{timestamps: false});
 };

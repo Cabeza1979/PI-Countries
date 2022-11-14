@@ -17,7 +17,8 @@ var continentes = function (arr) {
     continente.pop()
     return continente;
 }
-
+//GET inicial para carga de datos la primera vez
+//Get por nombre pasado por query (no es necesario matcheo)
 router.get("/", async(req,res)=>{
     const {nombre} = req.query;
     try {     
@@ -25,11 +26,13 @@ router.get("/", async(req,res)=>{
         console.log(nombre);
             const country = await Country.findAll({
                                 where: {
-                                    nombre:nombre.toLowerCase()
+                                    nombre:{
+                                        [Op.iLike]: `${nombre}%`
+                                    }
                                 },
                                 include:[Activity],
                                 });
-            if(country.length===0) throw "Not Found"
+            if(country.length===0) throw "Country Not Found"
             res.status(201).json(country);
         }else{
             await axios.get(`${API_URL}`)
@@ -44,7 +47,7 @@ router.get("/", async(req,res)=>{
                                   where:{id},
                                   defaults:{
                                       id: pais.cca3,
-                                      nombre: pais.name.common.toLowerCase(),
+                                      nombre: pais.name.common,
                                       bandera: pais.flags.svg,
                                       googlemap: pais.maps.googleMaps,
                                       escudo: pais.coatOfArms ? pais.coatOfArms.svg : null,
@@ -77,7 +80,7 @@ router.get("/continents", async (req, res) => {
     res.json(respuesta);
 });
 
-/* GET por continente */
+/* GET de Paises por continente */
 router.get("/continents/:name", async(req, res)=>{
     const {name} = req.params;
     try {
@@ -90,7 +93,7 @@ router.get("/continents/:name", async(req, res)=>{
     }
 })
 
-/* GET ordenado por poblacion*/
+/* GET paises ordenados por poblacion*/
 router.get("/population/:orden", async(req, res)=>{
     const {orden} = req.params; //1:Descendente
                             // 0: Ascendente
@@ -118,12 +121,12 @@ router.get("/population/:orden", async(req, res)=>{
 });
 
 /* GET por id del Pais*/
+//Si se pasan queries con datos solicitados, devuelve esos datos
+//sino retorna todos los datos del pais
 router.get("/:idCountry", async(req, res)=>{
     const {idCountry} = req.params;
-    console.log(idCountry);
     try {
-        //const country = await Country.findByPk(idCountry)
-        const country = await Country.findByPk(
+            const country = await Country.findByPk(
             idCountry,{
             include:[Activity],
             });

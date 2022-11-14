@@ -39,12 +39,11 @@ const ApiPages = ({ country, page, nextPage, prevPage, fetchCountry, reset, last
         <div className={style.container} onTouchStart={inicioToque} onTouchMove={pChange}>
             <div className={style.botonesDireccion}>
                 <div>
-                    <Btns prop="<< Primera" action={reset} />
-                    <Btns prop="Ultima >>" action={last} />
-                </div>
-                <div>
-                    <Btns prop="< Anterior" action={prevPage} />
-                    <Btns prop="Siguiente> " action={pNext} />
+                    <Btns prop="<< " action={reset} />
+                    <Btns prop="< " action={prevPage} />
+                    
+                    <Btns prop=" > " action={pNext} />
+                    <Btns prop=" >>" action={last} />
                 </div>
             </div>
             <div className={style.lista}>

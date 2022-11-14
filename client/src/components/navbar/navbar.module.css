@@ -4,9 +4,26 @@ body {
     background-color: transparent;
 }
 
+
 nav .buscador {
     width: 220px;
+    vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  border-radius: 15px;
 }
+
+nav .buscador input#search{
+    width: 220px;
+    height: 50px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    border-radius: 15px;
+  }
 
 nav {
     position: fixed;
@@ -49,11 +66,28 @@ nav .links li {
 nav .links select {
     display: block;
     padding: 10px;
-    font-size: 14px;
-    background-color: #060E4B;
-    color: #fff;
-    box-shadow: 0px 0px 6px 0px #ECF1C8;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    background-color: #1f3f09;
+
+    /* background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
+    background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
+    background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
+    background-image: -o-linear-gradient(top, #eb94d0, #2079b0); */
+    background-image: linear-gradient(to bottom,  #89d45e, #25490d);
+
+    border-radius: 10px;
+    /* text-shadow: 3px 2px 1px #9daef5; */
+    box-shadow: 6px 5px 24px #666666;
+    color: #fafafa;
+    padding: 19px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
     margin-left: 5px;
+
+    padding: 10px;
+
 }
 
 nav .links button {
