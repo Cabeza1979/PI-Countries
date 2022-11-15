@@ -59,19 +59,19 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
     };
 
     export function fetchActivity(name) {
+            return function (dispatch) {
+                // dispatch(getPost());
+                axios.get(`countries/activity/${name}`)
+                    .then(data => dispatch(filterByActivity(data.data)))
+            }
 
-        return function (dispatch) {
-            dispatch(getPost());
-            axios.get(`activities/${name}`)
-                .then(data => dispatch(filterByActivity(data.data)))
-        }
     };
 
     export function allActivities() {
         
         return function (dispatch) {
             dispatch(getPost());
-            axios.get("/activities")
+            axios.get("/activities/")
                 .then(data => dispatch(getAllActivities(data.data)))
         }
     };
@@ -123,7 +123,6 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
             payload: data
         }
     }
-    
     export function filterByActivity(data) {
         return {
             type: FILTER_BY_ACTIVITY,

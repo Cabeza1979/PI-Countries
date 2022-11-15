@@ -6,6 +6,7 @@ import pPrincipal from './components/render';
 import Details from './components/Details';
 import formActivity from './components/formActivity';
 import Activities from './components/activities';
+import ActDetails from './components/actDetails';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
        <Route path="/country/:idCountry" exact render={({match}) => <Details match={match} />} />
        <Route path="/activitY" component={formActivity} exact />
        <Route path="/allactivities" component={Activities} exact />
+       <Route path="/activity/:id" exact render={({match}) => <ActDetails match={match} />} />
 
     </div>
   );

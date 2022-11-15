@@ -6,7 +6,7 @@ import Btns from '../buttons'
 import { Link } from 'react-router-dom'
 
 const Details= ({match}) =>{
-  console.log(`/countries/${match.params.idCountry}`);
+  // console.log(`/countries/${match.params.idCountry}`);
 
   const [country, setCountry] = useState({});
 
@@ -16,7 +16,7 @@ const Details= ({match}) =>{
 
   },[match.params.idCountry]);
 
-  console.log(country);
+  // console.log(country);
 
   function area(valor) {
     if (!valor) return
@@ -43,7 +43,7 @@ const Details= ({match}) =>{
     res = res.reverse().join('')
     return res;
   };
-  console.log(country.activities);
+  console.log("Pais ", country);
   return (
     <div className={style.container}>
       <div className={style.volver}><Link to="/home"> <Btns prop="Home" /></Link></div>

@@ -13,7 +13,7 @@ const CardActivity = (props)=>{
             <h3>Duration: {props.duracion} minutes</h3>
             <h3>Seasson: {props.temporada}</h3>
             <br />
-            <button className={cardActivity.boton} onClick={props.onDelete}>Delete</button>
+            {/* <button className={cardActivity.boton} onClick={props.onDelete}>Delete</button> */}
         </div>
 )
 }

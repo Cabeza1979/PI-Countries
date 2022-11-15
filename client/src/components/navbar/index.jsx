@@ -43,12 +43,9 @@ const Navbar = (props) =>{
 
     const filterActivity = function (e) {
         props.reset()
-        let res = []
-        let actividad = e.target.value
-        let filtrado = activities.filter(a => a.nombre === actividad)
-       
-        filtrado.map(f => res.push(f.nombre))
-        props.fetchActivity(res[0])
+        if(e.target.value)
+        props.fetchActivity(e.target.value);
+        else props.fetchCountry();
     }
 
     const OrderByPopulation = function (e) {

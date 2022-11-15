@@ -17,26 +17,32 @@ const Activities = (props)=>{
 
     }, []);
     
-        const  deleteCard=(id)=>{
-        console.log("CardActivity", id);
-        props.deleteActivities(id);
-        setActivities(oldActivities => oldActivities.filter(a => a.id !== id));
-    }
+    //     const  deleteCard=(id)=>{
+    //     props.deleteActivities(id);
+    //     setActivities(oldActivities => oldActivities.filter(a => a.id !== id));
+    // }
 
     return (
         <>
             <div >
                 <br></br>
-                <Link to="/home"> <Btns prop="Home" /></Link></div>
-            { activities.map( activity => <Activity
+                <Link to="/home"> <Btns prop="Home" /></Link>
+            </div>
+            
+           
+            { activities.map( activity =>
+            <Link key={activity.nombre} to= {`/activity/${activity.id}`}>
+            <Activity
                 id= {activity.id}
                 nombre = {activity.nombre}
                 dificultad = {activity.dificultad}
                 duracion = {activity.duracion}
                 temporada ={activity.temporada}
                 key= {activity.nombre}
-                onDelete = {()=>deleteCard (activity.id)}
-            />)
+                // onDelete = {()=>deleteCard (activity.id)}
+            />
+             </Link>
+            )
             }
         
         

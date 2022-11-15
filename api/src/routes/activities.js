@@ -13,12 +13,14 @@ router.get("/", async(req,res) =>{
 });
 
 /*GET con los paises donde se realiza la actividad */
-router.get("/:actividad", async(req, res)=>{
+router.get("countries/:actividad", async(req, res)=>{
     const {actividad} = req.params;
     try {
         const allActivities = await Activity.findAll({
             where:{nombre : actividad},
-            include: Country })
+            include: Country,
+            
+        })
            //console.log(allActivities[0].countries);
         res.status(201).json(allActivities[0].countries);
 
@@ -26,6 +28,24 @@ router.get("/:actividad", async(req, res)=>{
         res.status(401).json(error.message);
     }
 })
+
+/*GET con la actividad por id */
+router.get("/:id", async(req, res)=>{
+    const {id} = req.params;
+    try {
+        const activity = await Activity.findByPk(id, {
+            // where:{id : id},
+            include: Country,
+            
+        })
+           //console.log(allActivities[0].countries);
+        res.status(201).json(activity);
+
+    } catch (error) {
+        res.status(401).json(error.message);
+    }
+})
+
 /* POST nueva actividad */
 router.post("/", async (req, res) => {
     const { nombre, dificultad, duracion, temporada, countries } = req.body

@@ -71,6 +71,8 @@ router.get("/", async(req,res)=>{
     }
 });
 
+
+
 /* GET de los continentes*/
 router.get("/continents", async (req, res) => {
     const countries = await Country.findAll({
@@ -120,6 +122,21 @@ router.get("/population/:orden", async(req, res)=>{
     }
 });
 
+/*GET con los paises donde se realiza la actividad */
+router.get("/activity/:name", async(req, res)=>{
+    const {name} = req.params;
+    try {
+        const allActivities = await Activity.findAll({
+            where:{nombre : name},
+            include: Country })
+           //console.log(allActivities[0].countries);
+        res.status(201).json(allActivities[0].countries);
+
+    } catch (error) {
+        res.status(401).json(error.message);
+    }
+})
+
 /* GET por id del Pais*/
 //Si se pasan queries con datos solicitados, devuelve esos datos
 //sino retorna todos los datos del pais
@@ -136,5 +153,6 @@ router.get("/:idCountry", async(req, res)=>{
         res.status(401).json(error.message);
     }
 });
+
 
 module.exports = router;

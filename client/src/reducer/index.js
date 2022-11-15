@@ -68,13 +68,9 @@ const reducer = (state = initialState, { type, payload }) =>{
                     country: state.countryFiltered
                 }
             case FILTER_BY_ACTIVITY:
-                
                 if (payload.length > 0) {
                     state.country = state.countryToShow
                     state.countryFiltered = payload;
-
-                } else {
-                    state.countryFiltered = state.countryToShow
                 }
                 return {
                     ...state,
@@ -124,7 +120,6 @@ const reducer = (state = initialState, { type, payload }) =>{
                
                 return{
                     ...state,
-
                 }
         default:
             return {...state};
