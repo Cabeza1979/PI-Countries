@@ -62,25 +62,25 @@ function FormActivity({ postActivity, country }) {
         <>
             <form className={style.formulario} onSubmit={handleSubmit}>
                 <div className={style.inputs}>
-                    <label>Name of Activity</label>
+                    <h2>Name of Activity</h2>
                     <br></br>
-                    <input name={"name"} value={formData.name} onChange={handleChange} />
+                    <input className="input" name={"name"} value={formData.name} onChange={handleChange} />
                 </div>
                 <span>{error.name}</span>
                 <div className={style.inputs}>
                     <br></br>
-                    <label>Duration (minutes)</label>
+                    <label><b>Duration (minutes)</b></label>
                     <input className={style.inputDuracion} type="number" name={"duracion"} value={formData.duracion} onChange={handleChange} min="1" />
                 </div>
                 <span>{error.duracion}</span>
                 <br></br>
                 <div className={style.inputs}>
-                    <label>Difficulty</label>
+                    <label><b>Difficulty</b></label>
                     <input type="range" name="dificultad" min="1" max="5" step="1" value={formData.dificultad} onChange={handleChange} />
                 </div>
                 <br></br>
                 <div className={style.inputs}>
-                    <label>Season</label>
+                    <label><b>Season</b></label>
                     <select className={style.input} name="temporada" onChange={handleChange}>
                         <option>Summer</option>
                         <option>Fall</option>
@@ -89,11 +89,16 @@ function FormActivity({ postActivity, country }) {
                     </select>
                 </div>
                 <div>
-                <br></br>
-                <input className={style.boton} type="submit" value="Guardar" />
-                <Link to="/home"> <Btns prop="Volver" /> </Link>
+                <hr></hr>
+                <ul className="listaBtn">
+                    <li >
+                        <input className={style.boton} type="submit" value="Guardar" />
+                    </li>
+                    <li >
+                    <Link to="/home"> <Btns prop="Volver" /> </Link>
+                    </li>
+                </ul>
                 </div>
-
             </form>
 
             <form className={style.formulario}>

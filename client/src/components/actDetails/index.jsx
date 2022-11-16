@@ -4,34 +4,80 @@ import { useState, useEffect } from 'react';
 import style from './actDetails.module.css';
 import Btns from '../buttons';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../../actions';
 
-const ActDetails= ({match}) =>{
+const ActDetails= (props) =>{
 //   console.log(`/activities/${match.params.id}`);
 
   const [activity, setActivity] = useState({});
-    
+  const [paisesSeleccionados, setPaisesSeleccionados] = useState([]);  
+  const [options, setOptions] = React.useState([]);
+
   useEffect(() => {
-    axios.get(`/activities/${match.params.id}`)
-      .then(data => setActivity(data.data))
-    
-  },[match.params.id]);
+    console.log("useEffect llamado");
+    axios.get(`/activities/${props.match.params.id}`)
+      .then(data => setActivity(data.data));
+  },[paisesSeleccionados]);
 
   const deleteAct=()=>{
-    console.log("Activity", match.params.id);
-    let id=match.params.id
+    // console.log("Activity", props.match.params.id);
+    let id=props.match.params.id
     axios.delete(`/activities/${id}`)
     .then(() => alert('Delete successful'));
     document.querySelector('#btn1').click();
 }
 
-    const modificarAct=()=>{
+const modificarAct=()=>{
 
     }
+const cancelHandler=()=>{
+     
+      document.getElementById("divSelector").hidden=true;
+      document.getElementById("btnDel").hidden= false;  
+      document.getElementById("btnMod").hidden= false; 
+      document.getElementById("btnAddDel").hidden= false;
+    }
+   
+ const saveHandler=()=>{
 
-    const addCountriesAct=()=>{
+      let newCountriesList=[];
+
+      newCountriesList = paisesSeleccionados.map((e)=>{
+        return e.value
+      })
+      axios.put(`activities/updatecountries/${props.match.params.id}`, {
+          "id": newCountriesList
+      })
+       .then((res)=> console.log(res))
+       .catch((e)=>e);
+        setPaisesSeleccionados(newCountriesList);
+       document.querySelector('#btnCancel').click();
+    }
+
+  const addDelCountriesAct=()=>{
+
+      let opciones = [];
+        props.country.forEach(element => {
+            opciones.push({ value: element.id, label: element.nombre })
+        })
+        setOptions(opciones);
+
+      document.getElementById("divSelector").hidden=false;
+      document.getElementById("btnDel").hidden= true;  
+      document.getElementById("btnMod").hidden= true; 
+      document.getElementById("btnAddDel").hidden= true;
+
+      let countriesSelected=[];
+      activity.countries.forEach(element => {
+        countriesSelected.push({ value: element.id, label: element.nombre })
+        setPaisesSeleccionados(countriesSelected);
+          })
 
     }
-    // console.log("activity: ", activity)
+   // console.log("paises seleccionados: ", paisesSeleccionados)
 
   return (
     
@@ -49,11 +95,17 @@ const ActDetails= ({match}) =>{
         <p>Seasson: <b>{activity.temporada}</b></p>
         <hr></hr>
         <div className={style.volver}>
-        <button className={style.boton} onClick={deleteAct}>Delete</button>
-        <button className={style.boton} onClick={modificarAct}>Modify</button>
-        <button className={style.boton} onClick={addCountriesAct}>Add Countries</button>
+        <button id="btnDel" className={style.boton} onClick={deleteAct}>Delete</button>
+        <button id="btnMod" className={style.boton} onClick={modificarAct}>Modify</button>
+        <button id="btnAddDel" className={style.boton} onClick={addDelCountriesAct}>Add/Del Countries</button>
         </div>
+        <div id="divSelector" hidden>
+        <h2>Select / Delete countries</h2>
 
+                <Select id="idSelect" className={style.listado} value={paisesSeleccionados} options={options} isMulti onChange={setPaisesSeleccionados} />
+                <button id="btnCancel" className={style.boton} onClick={cancelHandler}>Cancel</button>
+                <button  className={style.boton} onClick={saveHandler}>Save</button>
+        </div>
         <hr></hr>
         <p>Countries where you can perform {activity.nombre}</p>
         {
@@ -70,5 +122,15 @@ const ActDetails= ({match}) =>{
   )
 
 };
+function mapStateToProps(state) {
+  return {
+      country: state.country,
+      
+  }
+}
 
-export default ActDetails;
+const mapDispatchToProps = function (dispatch) {
+  return bindActionCreators(actionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActDetails)

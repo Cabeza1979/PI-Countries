@@ -6,35 +6,47 @@
     margin-top: 5%;
     margin-left: 2%;
     margin-right: 2%;
+    
     background-color: rgba(222, 238, 196, 0.7);
     border-radius: 10px;
-    width: 100%;
+    width: 400px;
+}
+.input{
+width: 150px;
+height: 30px;
+font-size: medium;
+font-family: Arial, sans-serif;
+}
+
+.inputText{
+    width: 200px;
+    height: 30px;
+    font-family: Arial, sans-serif;
+    }
+
+form input[type="text"]
+form input[type="submit"]:hover{
+	cursor:pointer;
 }
 .boton {
     background-color: #1f3f09;
-/* 
-    background-image: -webkit-linear-gradient(top, #89d45e, #25490d);
-    background-image: -moz-linear-gradient(top,  #89d45e, #3c7e11);
-    background-image: -ms-linear-gradient(top,  #89d45e, #3c7e11);
-    background-image: -o-linear-gradient(top,  #89d45e, #25490d); */
+
     background-image: linear-gradient(to bottom,  #89d45e, #25490d);
 
     border-radius: 10px;
-    /* text-shadow: 3px 2px 1px #9daef5; */
+    display: flex;
+    align-items: center;
     box-shadow: 6px 5px 24px #666666;
     color: #fafafa;
-    padding: 19px;
+    padding: 10px;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
 
-/* 
-    box-shadow: 0px 0px 6px 0px #ECF1C8;
-    color: #ECF1C8; */
     border: 0;
     width: 100px;
     height: 30px;
-    line-height: 10px;
+    line-height: 5px;
     transition-duration: 300ms;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 18px;
@@ -53,11 +65,7 @@
     transition-duration: 300ms;
 
     background:  #90a383;
-  /* background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -ms-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -o-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: linear-gradient(to bottom, #2079b0, #eb94d0); */
+
   text-decoration: none;
 }
 label {
@@ -79,7 +87,7 @@ span {
 .formulario h2{
     padding: 0;
     margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .lista {
@@ -89,6 +97,17 @@ span {
 .listado {
     margin-left: 25%;
     margin-right: 25%;
+}
+
+ul
+{
+    list-style-type: none;
+
+}
+ul li{
+    display:inline-flex;
+    padding-left:3px;
+    padding-right:3px;
 }
 
 @media screen and (max-width: 768px) {

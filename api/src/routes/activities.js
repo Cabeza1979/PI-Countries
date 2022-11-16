@@ -67,6 +67,24 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.put("/updatecountries/:idActivity", async(req, res)=>{
+    const idActivity= req.params;
+    const paises= req.body;
+
+    try {
+        const idPaises = paises.id;
+        const getActivity = await Activity.findByPk(idActivity.idActivity);
+             await getActivity.setCountries(idPaises);
+        //    for (i=0; i< idPaises.length; i++){
+           // await getActivity.addCountries(idPaises)
+        //    }
+           
+        res.status(201).json(idPaises)
+    } catch (error) {
+        res.status(401).json(error.message);
+}
+});
+
 /*PUT Modificar actividad */
 router.put("/update/:attribute", async(req, res)=>{
     const {attribute} = req.params;
@@ -85,24 +103,7 @@ router.put("/update/:attribute", async(req, res)=>{
     }
 });
 
-router.put("/updatecountries/:idActivity", async(req, res)=>{
-    const idActivity= req.params;
-    const paises= req.body;
 
-    console.log(idActivity.idActivity);
-    try {
-        const idPaises = paises.id;
-        const getActivity = await Activity.findByPk(idActivity.idActivity);
-           
-           for (i=0; i< idPaises.length; i++){
-            await getActivity.addCountries(idPaises[i])
-           }
-           
-        res.status(201).json(idPaises)
-    } catch (error) {
-}
-
-})
 
 router.delete("/:id", async(req,res)=>{
     try {

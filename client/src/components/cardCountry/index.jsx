@@ -5,8 +5,8 @@ const CardCountry = (props)=>{
     
     return (
         <div key = {props.nombre} className = {card.tarjeta}>
-            <h3>{props.nombre}</h3>
-            <h3>{props.continente}</h3>
+            <h1>{props.nombre}</h1>
+            <h4>{props.continente}</h4>
             <img type="image/svg+xml" alt="National flag" src={props.bandera} />
         </div>
 )
