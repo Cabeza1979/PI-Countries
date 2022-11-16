@@ -107,25 +107,28 @@ const cancelHandler=()=>{
                 <button  className={style.boton} onClick={saveHandler}>Save</button>
         </div>
         <hr></hr>
+        <div className={style.container}>
         <p>Countries where you can perform {activity.nombre}</p>
+        
         {
         activity.countries? activity.countries.map((country) => 
-            <div >
+             
                 <Link key={country.nombre} to= {`/country/${country.id}`}>
                     <h3>{country.nombre}</h3>
                     <img className={style.bandera} type="image/svg+xml" alt="National flag" src={country.bandera} />
                 </Link>
-                </div>
+              
             ) : <h2>No countries</h2>
         }
+        
+        </div>
     </div>
   )
-
 };
+
 function mapStateToProps(state) {
   return {
-      country: state.country,
-      
+      country: state.country,      
   }
 }
 

@@ -35,6 +35,7 @@ const ApiPages = ({ country, page, nextPage, prevPage, fetchCountry, reset, last
             pNext();
         }
     }
+    console.log(page);
     return (
         <div className={style.container} onTouchStart={inicioToque} onTouchMove={pChange}>
             <div className={style.botonesDireccion}>
@@ -48,10 +49,10 @@ const ApiPages = ({ country, page, nextPage, prevPage, fetchCountry, reset, last
             </div>
             <div className={style.lista}>
                 {
-                    country.length > 0 ?
-                        <Countries paises={country.slice(page, page + 10)} />
-                        :
-                        <img src={imagen} alt="" />
+                    
+                    (page === 0) ? <Countries paises={country.slice(0, page + 9)} />  :
+                     (country.length > 0) ? <Countries paises={country.slice(page, page + 10)} /> : 
+                     <img src={imagen} alt="" />
                 }
             </div>
         </div>

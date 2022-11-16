@@ -64,7 +64,7 @@ function FormActivity({ postActivity, country }) {
                 <div className={style.inputs}>
                     <h2>Name of Activity</h2>
                     <br></br>
-                    <input className="input" name={"name"} value={formData.name} onChange={handleChange} />
+                    <input className="inputText" name={"name"} value={formData.name} onChange={handleChange} />
                 </div>
                 <span>{error.name}</span>
                 <div className={style.inputs}>
