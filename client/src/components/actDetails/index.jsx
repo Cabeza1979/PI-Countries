@@ -11,72 +11,73 @@ import * as actionCreators from '../../actions';
 
 const ActDetails= (props) =>{
 //   console.log(`/activities/${match.params.id}`);
-
+  
   const [activity, setActivity] = useState({});
   const [paisesSeleccionados, setPaisesSeleccionados] = useState([]);  
-  const [options, setOptions] = React.useState([]);
-
+  const [options, setOptions] = useState([]);
+  // const [formData, setFormData] = useState({ });
+ 
+     
   useEffect(() => {
-    console.log("useEffect llamado");
-    axios.get(`/activities/${props.match.params.id}`)
-      .then(data => setActivity(data.data));
+      console.log("useEffect llamado");
+      axios.get(`/activities/${props.match.params.id}`)
+        .then(data => setActivity(data.data));
   },[paisesSeleccionados]);
 
   const deleteAct=()=>{
-    // console.log("Activity", props.match.params.id);
-    let id=props.match.params.id
-    axios.delete(`/activities/${id}`)
-    .then(() => alert('Delete successful'));
-    document.querySelector('#btn1').click();
+      // console.log("Activity", props.match.params.id);
+      let id=props.match.params.id
+      axios.delete(`/activities/${id}`)
+      .then(() => alert('Delete successful'));
+      document.querySelector('#btn1').click();
+  }
+
+
+  const saveCountriesHandler=()=>{
+
+    let newCountriesList=[];
+    newCountriesList = paisesSeleccionados.map((e)=>{
+    return e.value
+      })
+    axios.put(`activities/updatecountries/${props.match.params.id}`, {
+      "id": newCountriesList
+       })
+    .then((res)=> console.log(res))
+    .catch((e)=>e);
+    setPaisesSeleccionados(newCountriesList);
+   document.getElementById('btnCancel').click();
 }
 
-const modificarAct=()=>{
+const addDelCountriesAct=()=>{
+  let opciones = [];
+    props.country.forEach(element => {
+        opciones.push({ value: element.id, label: element.nombre })
+    })
+    setOptions(opciones);
 
-    }
+  document.getElementById("divSelector").hidden=false;
+  document.getElementById("btnDel").hidden= true;  
+  document.getElementById("btnAddDel").hidden= true;
+
+  let countriesSelected=[];
+  activity.countries.forEach(element => {
+    countriesSelected.push({ value: element.id, label: element.nombre })
+    setPaisesSeleccionados(countriesSelected);
+      })
+
+}
+
 const cancelHandler=()=>{
      
       document.getElementById("divSelector").hidden=true;
       document.getElementById("btnDel").hidden= false;  
-      document.getElementById("btnMod").hidden= false; 
       document.getElementById("btnAddDel").hidden= false;
+ 
     }
    
- const saveHandler=()=>{
 
-      let newCountriesList=[];
 
-      newCountriesList = paisesSeleccionados.map((e)=>{
-        return e.value
-      })
-      axios.put(`activities/updatecountries/${props.match.params.id}`, {
-          "id": newCountriesList
-      })
-       .then((res)=> console.log(res))
-       .catch((e)=>e);
-        setPaisesSeleccionados(newCountriesList);
-       document.querySelector('#btnCancel').click();
-    }
 
-  const addDelCountriesAct=()=>{
-
-      let opciones = [];
-        props.country.forEach(element => {
-            opciones.push({ value: element.id, label: element.nombre })
-        })
-        setOptions(opciones);
-
-      document.getElementById("divSelector").hidden=false;
-      document.getElementById("btnDel").hidden= true;  
-      document.getElementById("btnMod").hidden= true; 
-      document.getElementById("btnAddDel").hidden= true;
-
-      let countriesSelected=[];
-      activity.countries.forEach(element => {
-        countriesSelected.push({ value: element.id, label: element.nombre })
-        setPaisesSeleccionados(countriesSelected);
-          })
-
-    }
    // console.log("paises seleccionados: ", paisesSeleccionados)
 
   return (
@@ -90,13 +91,19 @@ const cancelHandler=()=>{
         <h1>{activity.nombre}</h1>
         <hr></hr>
      
-        <p>Difficult: <b>{activity.dificultad}</b></p>
-        <p>Duration: <b>{activity.duracion}</b></p>
-        <p>Seasson: <b>{activity.temporada}</b></p>
+        <p>Difficult: <b>{activity.dificultad}</b> 
+        </p> 
+
+        <p>Duration: <b>{activity.duracion}</b>
+                     
+        </p>
+        <p>Seasson: <b>{activity.temporada}</b>
+
+        
+        </p>
         <hr></hr>
         <div className={style.volver}>
         <button id="btnDel" className={style.boton} onClick={deleteAct}>Delete</button>
-        <button id="btnMod" className={style.boton} onClick={modificarAct}>Modify</button>
         <button id="btnAddDel" className={style.boton} onClick={addDelCountriesAct}>Add/Del Countries</button>
         </div>
         <div id="divSelector" hidden>
@@ -104,7 +111,7 @@ const cancelHandler=()=>{
 
                 <Select id="idSelect" className={style.listado} value={paisesSeleccionados} options={options} isMulti onChange={setPaisesSeleccionados} />
                 <button id="btnCancel" className={style.boton} onClick={cancelHandler}>Cancel</button>
-                <button  className={style.boton} onClick={saveHandler}>Save</button>
+                <button  className={style.boton} onClick={saveCountriesHandler}>Save</button>
         </div>
         <hr></hr>
         <div className={style.container}>

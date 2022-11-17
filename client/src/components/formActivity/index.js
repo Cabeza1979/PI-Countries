@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 function FormActivity({ postActivity, country }) {
-    const [formData, setFormData] = React.useState({ name: "", dificultad: 1, duracion: 0, temporada: "Summer", pais: [] });
+    const [formData, setFormData] = React.useState({ name: "", dificultad: 1, duracion: 5, temporada: "Summer", pais: [] });
     const [error, setError] = React.useState({name: "", duracion: ""});
     const [options, setOptions] = React.useState([]);
     const [paisesSeleccionados, setPaisesSeleccionados] = React.useState([]);
+    
 
     useEffect(() => {
         let opciones = [];
@@ -70,13 +71,15 @@ function FormActivity({ postActivity, country }) {
                 <div className={style.inputs}>
                     <br></br>
                     <label><b>Duration (minutes)</b></label>
-                    <input className={style.inputDuracion} type="number" name={"duracion"} value={formData.duracion} onChange={handleChange} min="1" />
+                    <input className={style.inputDuracion} type="number" name={"duracion"}
+                     value={formData.duracion} onChange={handleChange} min="5" step="5" />
                 </div>
                 <span>{error.duracion}</span>
                 <br></br>
                 <div className={style.inputs}>
                     <label><b>Difficulty</b></label>
                     <input type="range" name="dificultad" min="1" max="5" step="1" value={formData.dificultad} onChange={handleChange} />
+                    <label><b>{formData.dificultad}</b></label>
                 </div>
                 <br></br>
                 <div className={style.inputs}>

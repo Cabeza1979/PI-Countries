@@ -86,15 +86,15 @@ router.put("/updatecountries/:idActivity", async(req, res)=>{
 });
 
 /*PUT Modificar actividad */
-router.put("/update/:attribute", async(req, res)=>{
-    const {attribute} = req.params;
-    const {id, value} = req.body;
-    console.log(id, value, attribute);
+router.put("/update/:id", async(req, res)=>{
+    const {id} = req.params;
+    const {duracion, dificultad, temporada} = req.body;
+    console.log(id, duracion, dificultad, temporada);
     try {
         const actividad = await Activity.update(
-            {[attribute]:value,},
+            {duracion, dificultad, temporada },
             {
-                where:{id:id}
+                where:{id}
             }
         )       
         res.status(201).json(actividad)

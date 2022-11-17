@@ -102,8 +102,18 @@
     height: 10%;
 }
 
-
-
+.inputDuracion{
+    padding: 5px;
+    font-size: medium;
+    margin: 2%;
+}
+.input{
+    width: 150px;
+    height: 30px;
+    font-size: medium;
+    font-family: Arial, sans-serif;
+    margin:2%
+    }
 @media screen and (max-width: 768px) {
     .volver {
         height: 50px;
