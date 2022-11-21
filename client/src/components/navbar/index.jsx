@@ -26,12 +26,14 @@ const Navbar = (props) =>{
     }
 
     const handleChange = function (e) {
+        
         props.reset();
        props.filterBySearch(normalizeName(e.target.value))
        //console.log(e.target.value);
     }
 
     const filterChange = function (e) {
+        console.log("orden alfabetico");
         props.reset()
         props.filterByAlph(e.target.value)
     }

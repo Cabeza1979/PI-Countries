@@ -19,13 +19,13 @@ const ActDetails= (props) =>{
  
      
   useEffect(() => {
-      console.log("useEffect llamado");
+      //console.log("useEffect llamado");
       axios.get(`/activities/${props.match.params.id}`)
         .then(data => setActivity(data.data));
   },[paisesSeleccionados]);
 
   const deleteAct=()=>{
-      // console.log("Activity", props.match.params.id);
+       //console.log("Activity", props.match.params.id);
       let id=props.match.params.id
       axios.delete(`/activities/${id}`)
       .then(() => alert('Delete successful'));
@@ -75,9 +75,6 @@ const cancelHandler=()=>{
  
     }
    
-
-
-
    // console.log("paises seleccionados: ", paisesSeleccionados)
 
   return (

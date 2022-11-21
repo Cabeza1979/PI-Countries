@@ -11,6 +11,8 @@ import imagen from "./../../img/background-9.jpg"
 const ApiPages = ({ country, page, nextPage, prevPage, fetchCountry, reset, last }) => {
 
     var xIni;
+    var numPage = 1 + page/10;
+    var cantidadPage= Math.ceil(country.length/10);
 
     useEffect(() => {
         fetchCountry();
@@ -34,15 +36,16 @@ const ApiPages = ({ country, page, nextPage, prevPage, fetchCountry, reset, last
         if (e.targetTouches[0].pageX - 5 < xIni) {
             pNext();
         }
+        
     }
-    console.log(page);
+    
     return (
         <div className={style.container} onTouchStart={inicioToque} onTouchMove={pChange}>
             <div className={style.botonesDireccion}>
                 
                    <Btns prop="<< " action={reset} />
                     <Btns prop="< " action={prevPage} />
-                    
+                    <label className={style.label}>{numPage}/{cantidadPage}</label>
                     <Btns prop=" > " action={pNext} />
                     <Btns prop=" >>" action={last} />
                 

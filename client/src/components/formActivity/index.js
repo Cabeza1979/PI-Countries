@@ -12,7 +12,8 @@ function FormActivity({ postActivity, country }) {
     const [error, setError] = React.useState({name: "", duracion: ""});
     const [options, setOptions] = React.useState([]);
     const [paisesSeleccionados, setPaisesSeleccionados] = React.useState([]);
-    
+    const season = [
+        {value:"Summer", label:"Summer"}, {Value:"Fall", label:"Fall"}, {Value:"Spring", label:"Spring"}, {value: "Winter", label:"Winter"}]
 
     useEffect(() => {
         let opciones = [];
@@ -30,7 +31,7 @@ function FormActivity({ postActivity, country }) {
         paisesSeleccionados.forEach((p)=>{
              paises.push(p.value)
         })
-        console.log("paises selec ", paises);  
+        // console.log("paises selec ", paises);  
         if (paises.length===0) return alert("Select at least one country")
         
         if (paises.length > 0 && error.name === "" && error.duracion === "") {
@@ -38,7 +39,7 @@ function FormActivity({ postActivity, country }) {
         let data = { nombre: formData.name, dificultad: formData.dificultad, duracion: formData.duracion, temporada: formData.temporada, pais: paises}
       
             const result =  await postActivity(data)
-            console.log("resultado: ", result);
+            // console.log("resultado: ", result);
             if(result){
                 setFormData({ name: "", dificultad: 1, duracion: 10, temporada: "Summer", pais: [] })
                 setPaisesSeleccionados([])
@@ -51,6 +52,7 @@ function FormActivity({ postActivity, country }) {
     }
 
     function handleChange(e) {
+        console.log(e);
         setFormData((prevData) => {
             const state = { ...prevData, [e.target.name]: e.target.value }
             const validations = validate(state);
@@ -60,31 +62,31 @@ function FormActivity({ postActivity, country }) {
     }
 
     return (
-        <>
+        <div className={style.container}>
             <form className={style.formulario} onSubmit={handleSubmit}>
                 <div className={style.inputs}>
                     <h2>Name of Activity</h2>
                     <br></br>
-                    <input className="inputText" name={"name"} value={formData.name} onChange={handleChange} />
+                    <input className={style.inputText} name={"name"} value={formData.name} onChange={handleChange} key="nombreAct" />
                 </div>
                 <span>{error.name}</span>
                 <div className={style.inputs}>
                     <br></br>
                     <label><b>Duration (minutes)</b></label>
                     <input className={style.inputDuracion} type="number" name={"duracion"}
-                     value={formData.duracion} onChange={handleChange} min="5" step="5" />
+                     value={formData.duracion} onChange={handleChange} min="5" step="5" key="duracionAct"/>
                 </div>
                 <span>{error.duracion}</span>
                 <br></br>
                 <div className={style.inputs}>
                     <label><b>Difficulty</b></label>
-                    <input type="range" name="dificultad" min="1" max="5" step="1" value={formData.dificultad} onChange={handleChange} />
+                    <input type="range" name="dificultad" min="1" max="5" step="1" value={formData.dificultad} onChange={handleChange} key="dificultadAct" />
                     <label><b>{formData.dificultad}</b></label>
                 </div>
                 <br></br>
                 <div className={style.inputs}>
                     <label><b>Season</b></label>
-                    <select className={style.input} name="temporada" onChange={handleChange}>
+                    <select className={style.lista} name="temporada" value={formData.temporada}  onChange={handleChange} >
                         <option>Summer</option>
                         <option>Fall</option>
                         <option>Winter</option>
@@ -93,7 +95,7 @@ function FormActivity({ postActivity, country }) {
                 </div>
                 <div>
                 <hr></hr>
-                <ul className="listaBtn">
+                <ul className={style.listaBtn}>
                     <li >
                         <input className={style.boton} type="submit" value="Guardar" />
                     </li>
@@ -110,7 +112,7 @@ function FormActivity({ postActivity, country }) {
                 <Select className={style.listado} value={paisesSeleccionados} options={options} isMulti onChange={setPaisesSeleccionados} />
             </form>
 
-        </>
+        </div>
     )
 }
 

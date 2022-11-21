@@ -1,36 +1,55 @@
-.btnInicio{
-    margin-left: 40%;;
-    position: absolute;
+.tarjeta {
+    /* margin: 500px 0 0 10px; */
+    box-shadow: rgba(87, 86, 86, 0.8) 0px 18px 50px -10px;
+    height: 320px;
+    width: 400px;
+   /* transition-duration: 500ms;*/
+    margin: 20px;
     display: inline-block;
-    bottom: 50%;
-    animation: showButton 3s;
-
+    animation: showButton 5s;
+    position:absolute; top:20%; left:40%;
 }
+
+.tarjeta:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+.tarjeta h2{
+    font-style: italic;
+    color: #1f3f09;
+    font-size: xx-large;
+}
+
+.tarjeta h2 img{
+    width: 25px;
+    height: 25px;
+}
+
 @keyframes showButton {
     from {
-        margin-left: 0%;
+        position:absolute; top:20%; left:0;
         filter: opacity(0)
     } to {
-        margin-left: 40%;
+        position:absolute; top:20%; left:40%;
         filter:opacity(1);
     }
 }
 
 @media screen and (max-width: 768px) {
-    .btnInicio{
+    .tarjeta{
         display: block;
-        margin-left: 35%;
-        margin-bottom: 60%;
+        tion:absolute; top:20%; left:10%;
         bottom: 0px;
         animation: showButton 5s;
     }
     @keyframes showButton {
         from {
-            margin-bottom: 40%;
-            filter: opacity(0)
-        } to {
-            margin-bottom: 60%;
-            filter:opacity(1);
+            position:absolute; top:20%; left:0;
+        filter: opacity(0)
+    } to {
+        position:absolute; top:20%; left:10%;
+        filter:opacity(1);
         }
     }
 }

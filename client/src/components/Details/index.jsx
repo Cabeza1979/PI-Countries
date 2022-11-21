@@ -59,9 +59,10 @@ const Details= ({match}) =>{
       <p>Population: <b>{numerar(country.poblacion)}</b></p>
       
       <hr></hr>
+      <p><b>Activities: </b></p>
       {country.activities ? country.activities.map((act) => 
       <div className={style.actividad}>
-      <h2>Activity: {act.nombre}</h2>
+      <h2>{act.nombre}</h2>
       <p>Season: {act.temporada}</p>
       <p>Duration: {act.duracion} minutos</p>
       <p>Difficulty: {act.dificultad}</p>

@@ -70,14 +70,11 @@ nav .links select {
     font-size: 16px;
     background-color: #1f3f09;
 
-    /* background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
-    background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
-    background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
-    background-image: -o-linear-gradient(top, #eb94d0, #2079b0); */
+
     background-image: linear-gradient(to bottom,  #89d45e, #25490d);
 
     border-radius: 10px;
-    /* text-shadow: 3px 2px 1px #9daef5; */
+
     box-shadow: 6px 5px 24px #666666;
     color: #fafafa;
     padding: 19px;

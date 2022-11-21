@@ -1,4 +1,16 @@
+.container{
+width: 100%;
+    
+}
+
 .formulario {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 20px;
@@ -9,7 +21,8 @@
     
     background-color: rgba(222, 238, 196, 0.7);
     border-radius: 10px;
-    width: 400px;
+    width: 600px;
+    position:relative;
 }
 .input{
 width: 150px;
@@ -20,8 +33,15 @@ font-family: Arial, sans-serif;
 
 .inputText{
     width: 200px;
-    height: 30px;
+    height: 20px;
     font-family: Arial, sans-serif;
+    background: rgb(238, 245, 237);
+    border: 1px solid #393939;
+    border-radius: 5px 5px 5px 5px;
+    color: #030303;
+    font-size: 20px;
+    font-style: italic, bold;
+    padding: 5px;
     }
 
 form input[type="text"]
@@ -78,7 +98,16 @@ span {
 }
 
 .inputDuracion{
-    width: 50px;
+    width: 100px;
+    height: 16px;
+    font-family: Arial, sans-serif;
+    background:rgb(238, 245, 237);
+    border: 1px solid #393939;
+    border-radius: 5px 5px 5px 5px;
+    color: #393939;
+    font-size: 16px;
+    font-style: italic bold;
+    padding: 5px;
 }
 
 .formulario p{
@@ -91,12 +120,23 @@ span {
 }
 
 .lista {
-    height: 350px;
+    width: 200px;
+    height: 30px;
+    font-family: Arial, sans-serif;
+    background: rgb(238, 245, 237);
+    border: 1px solid #393939;
+    border-radius: 5px 5px 5px 5px;
+    color: #393939;
+    font-size: 16px;
+    font-style: italic bold;
+    padding: 5px;
 }
 
 .listado {
     margin-left: 25%;
     margin-right: 25%;
+    width: 100%;
+   
 }
 
 ul
@@ -117,5 +157,19 @@ ul li{
     .listado {
         margin-left: 5%;
         margin-right: 5%;
+    }
+    .formulario {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+        
+        background-color: rgba(222, 238, 196, 0.7);
+        border-radius: 10px;
+        width: auto;
+        position:relative;
     }
 }

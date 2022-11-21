@@ -54,6 +54,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     loading: true,
                 }
             case FILTER_BY_SEARCH:
+                
                 state.country = state.countryToShow
                 state.countryFiltered = state.country.filter(p => p.nombre.includes(payload))
                 return {
@@ -61,6 +62,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     country: state.countryFiltered
                 }
             case FILTER_BY_CONTINENT:
+                
                 state.country = state.countryToShow
                 state.countryFiltered = state.country.filter(p => p.continente.includes(payload))
                 return {
@@ -77,6 +79,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     country: state.countryFiltered
                 }
             case FILTER_BY_ALPH:
+                console.log("Reducer...");
                 if (payload === 'a-z')
                     state.country.sort((a, b) => {
                         if (a.nombre < b.nombre) return -1;
@@ -115,9 +118,8 @@ const reducer = (state = initialState, { type, payload }) =>{
                     ...state,
                     activities: payload
                 }
-
             case DELETE_ACTIVITY:
-               
+                
                 return{
                     ...state,
                 }

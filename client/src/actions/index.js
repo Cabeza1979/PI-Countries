@@ -4,7 +4,7 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
       NEXT_PAGE, PREV_PAGE, RESET, FILTER_BY_ACTIVITY, LAST, ALL_ACTIVITIES, DELETE_ACTIVITY } from "./types";
 
 
-      export const postActivity=(data) => {
+    export const postActivity=(data) => {
         return function (dispatch) {
             dispatch(getPost());
          return axios.post('/activities',
@@ -37,19 +37,21 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
         return {
             type: GET_POST,
         }
-    }
+    };
+
     export function deletePost() {
         return {
             type: DELETE_ACTIVITY,
         }
-    }
+    };
 
     export function findCountry(data) {
         return {
             type: FIND_COUNTRY,
             payload: data
         }
-    }
+    };
+
     export function fetchCountry() {
         return function (dispatch) {
             dispatch(getPost());
@@ -90,70 +92,75 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
             type: FILTER_BY_POPULATION,
             payload: orden
         }
-    }
+    };
     
     export function filterBySearch(data) {
         return {
             type: FILTER_BY_SEARCH,
             payload: data
         }
-    }
+    };
     
     export function nextPage(page) {
         return {
             type: NEXT_PAGE,
             payload: page
         }
-    }
+    };
+
     export function prevPage(page) {
         return {
             type: PREV_PAGE,
             payload: page
         }
-    }
+    };
+
     export function reset() {
         return {
             type: RESET
         }
-    }
+    };
     
     export function filterByContinent(data) {
+        
         return {
             type: FILTER_BY_CONTINENT,
             payload: data
         }
-    }
+    };
+
     export function filterByActivity(data) {
         return {
             type: FILTER_BY_ACTIVITY,
             payload: data
         }
-    }
+    };
+
     export function getAllActivities(data) {
         return {
             type: ALL_ACTIVITIES,
             payload: data
         }
-    }
+    };
 
     export function deleteActivity(data) {
-        console.log("estoy en actions deleteActivity: ", data );
+      
         return {
             type: DELETE_ACTIVITY,
             payload: data
         }
-    }
-    
+    };    
 
     export function filterByAlph(data) {
+        console.log("Actions...");
         return {
             type: FILTER_BY_ALPH,
             payload: data
         }
-    }
+    };
     
     export function last() {
         return {
             type: LAST
         }
-    }
+    };
