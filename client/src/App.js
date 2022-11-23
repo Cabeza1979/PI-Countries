@@ -7,7 +7,7 @@ import Details from './components/Details';
 import formActivity from './components/formActivity';
 import Activities from './components/activities';
 import ActDetails from './components/actDetails';
-import Footer from './components/footer';
+
 
 function App() {
   return (

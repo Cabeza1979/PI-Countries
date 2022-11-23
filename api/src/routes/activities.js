@@ -13,7 +13,7 @@ router.get("/", async(req,res) =>{
 });
 
 /*GET con los paises donde se realiza la actividad */
-router.get("countries/:actividad", async(req, res)=>{
+router.get("/countries/:actividad", async(req, res)=>{
     const {actividad} = req.params;
     try {
         const allActivities = await Activity.findAll({
@@ -102,8 +102,6 @@ router.put("/update/:id", async(req, res)=>{
         res.status(401).json(error.message);
     }
 });
-
-
 
 router.delete("/:id", async(req,res)=>{
     try {

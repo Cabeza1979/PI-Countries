@@ -32,24 +32,28 @@ const Navbar = (props) =>{
     }
 
     const filterChange = function (e) {
-        props.reset()
+      //  props.reset()
+      console.log("filtro orden: ", e.target.value);
         props.filterByAlph(e.target.value)
     }
 
     const filterContinent = function (e) {
-        props.reset()
+       // props.reset()
+       console.log("filtro continente: ", e.target.value);
         props.filterByContinent(e.target.value)
     }
 
     const filterActivity = function (e) {
         props.reset()
+        console.log("filtro act: ", e.target.value);
         if(e.target.value)
         props.fetchActivity(e.target.value);
         else props.fetchCountry();
     }
 
     const OrderByPopulation = function (e) {
-        props.reset()
+       // props.reset()
+       console.log("filtro poblacion: ", e.target.value);
         props.orderCountry(e.target.value);
     }
 
@@ -86,14 +90,14 @@ const Navbar = (props) =>{
                     <option value="">Continents</option>
                     { continents ? continents.map(c => <option key={c}>{c}</option>) : <h1>Hubo un problema con la Ap"</h1>}
                 </select></li>
-                <li><select name="FilterByActivity" className={style.orden} onChange={filterActivity}>
-                    <option value="">Activities</option>
-                    {renderizarActividades()}
-                </select></li>
                 <li>
                     <input className={style.buscador} name="countrySearch" value={props.inputText} onChange={handleChange} placeholder="Search by name" />
                     
                 </li>
+                <li><select id="idFilterAct" name="FilterByActivity" className={style.orden} onChange={filterActivity}>
+                    <option value="">Activities</option>
+                    {renderizarActividades()}
+                </select></li>
                 <li>
                     <Link to="/allactivities" ><Btns prop="All Activities" /></Link>
                    

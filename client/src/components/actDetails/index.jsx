@@ -8,6 +8,8 @@ import Select from 'react-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions';
+import Modal from "../modal";
+
 
 const ActDetails= (props) =>{
 //   console.log(`/activities/${match.params.id}`);
@@ -15,6 +17,7 @@ const ActDetails= (props) =>{
   const [activity, setActivity] = useState({});
   const [paisesSeleccionados, setPaisesSeleccionados] = useState([]);  
   const [options, setOptions] = useState([]);
+  const [isModalOpen, setIsModalOpen]= useState(false);
   // const [formData, setFormData] = useState({ });
  
      
@@ -28,8 +31,9 @@ const ActDetails= (props) =>{
        //console.log("Activity", props.match.params.id);
       let id=props.match.params.id
       axios.delete(`/activities/${id}`)
-      .then(() => alert('Delete successful'));
-      document.querySelector('#btn1').click();
+      .then(alert("Activity deleted"));
+     // setIsModalOpen(!isModalOpen) ;
+     document.querySelector('#btn1').click();
   }
 
 
@@ -101,6 +105,7 @@ const cancelHandler=()=>{
         <hr></hr>
         <div className={style.volver}>
         <button id="btnDel" className={style.boton} onClick={deleteAct}>Delete</button>
+        <Modal isModalOpen={isModalOpen} setIsMOdalOpen={setIsModalOpen} Text="Delet Activty?"/>
         <button id="btnAddDel" className={style.boton} onClick={addDelCountriesAct}>Add/Del Countries</button>
         </div>
         <div id="divSelector" hidden>
