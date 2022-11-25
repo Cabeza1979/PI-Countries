@@ -28,24 +28,21 @@ const Navbar = (props) =>{
     const handleChange = function (e) {
         props.reset();
        props.filterBySearch(normalizeName(e.target.value))
-       //console.log(e.target.value);
+       
     }
 
     const filterChange = function (e) {
       //  props.reset()
-      console.log("filtro orden: ", e.target.value);
-        props.filterByAlph(e.target.value)
+      props.filterByAlph(e.target.value)
     }
 
     const filterContinent = function (e) {
        // props.reset()
-       console.log("filtro continente: ", e.target.value);
         props.filterByContinent(e.target.value)
     }
 
     const filterActivity = function (e) {
         props.reset()
-        console.log("filtro act: ", e.target.value);
         if(e.target.value)
         props.fetchActivity(e.target.value);
         else props.fetchCountry();
@@ -53,7 +50,6 @@ const Navbar = (props) =>{
 
     const OrderByPopulation = function (e) {
        // props.reset()
-       console.log("filtro poblacion: ", e.target.value);
         props.orderCountry(e.target.value);
     }
 
@@ -70,7 +66,6 @@ const Navbar = (props) =>{
         }
         return (newArray.map(element => <option key={element.id * 10}>{element.nombre}</option>))
     }
-
     return (<>
         <nav>
             <label className={style.logo}>Countries</label>

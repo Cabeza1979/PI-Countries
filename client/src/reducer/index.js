@@ -71,6 +71,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     country: state.countryFiltered
                 }
             case FILTER_BY_ACTIVITY:
+                
                 if (payload.length > 0) {
                     state.country = state.countryToShow
                     state.countryFiltered = payload;
@@ -80,6 +81,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     country: state.countryFiltered
                 }
             case FILTER_BY_ALPH:
+                
                 if (payload === 'a-z')
                     state.country.sort((a, b) => {
                         if (a.nombre < b.nombre) return -1;
@@ -97,6 +99,7 @@ const reducer = (state = initialState, { type, payload }) =>{
                     order: payload,
                 }
             case FILTER_BY_POPULATION:
+               
                 if (payload === 'dec')
                     state.country.sort((a, b) => {
                         if (a.poblacion > b.poblacion) return -1;

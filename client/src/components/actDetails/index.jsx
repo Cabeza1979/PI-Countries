@@ -12,7 +12,6 @@ import Modal from "../modal";
 
 
 const ActDetails= (props) =>{
-//   console.log(`/activities/${match.params.id}`);
   
   const [activity, setActivity] = useState({});
   const [paisesSeleccionados, setPaisesSeleccionados] = useState([]);  
@@ -22,23 +21,23 @@ const ActDetails= (props) =>{
  
      
   useEffect(() => {
-      //console.log("useEffect llamado");
+      
       axios.get(`/activities/${props.match.params.id}`)
         .then(data => setActivity(data.data));
   },[paisesSeleccionados]);
 
   const deleteAct=()=>{
-       //console.log("Activity", props.match.params.id);
+      
       let id=props.match.params.id
       axios.delete(`/activities/${id}`)
       .then(alert("Activity deleted"));
-     // setIsModalOpen(!isModalOpen) ;
+    
      document.querySelector('#btn1').click();
   }
 
 
   const saveCountriesHandler=()=>{
-
+console.log("save countries");
     let newCountriesList=[];
     newCountriesList = paisesSeleccionados.map((e)=>{
     return e.value

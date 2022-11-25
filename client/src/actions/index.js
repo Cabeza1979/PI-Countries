@@ -21,9 +21,10 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
 
     //     "id":["BRB","CHL","ARG"]
     export const putCountriesInActivity=(data) => {
+        
         return function (dispatch) {
             dispatch(getPost());
-            //console.log("estoy en putCountriesInActivity",data);
+            
             axios.put('/updatecountries/:idActivity',
             {
                 countries:data
@@ -88,6 +89,7 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
     };
     
     export function orderCountry(orden) {
+        
         return {
             type: FILTER_BY_POPULATION,
             payload: orden
@@ -130,6 +132,7 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
     };
 
     export function filterByActivity(data) {
+        
         return {
             type: FILTER_BY_ACTIVITY,
             payload: data
@@ -152,7 +155,7 @@ import { FILTER_BY_POPULATION, FILTER_BY_ALPH, FILTER_BY_CONTINENT,
     };    
 
     export function filterByAlph(data) {
-        console.log("Actions...");
+       
         return {
             type: FILTER_BY_ALPH,
             payload: data

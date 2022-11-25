@@ -43,7 +43,7 @@ const Details= ({match}) =>{
     res = res.reverse().join('')
     return res;
   };
-  console.log("Pais ", country);
+  
   return (
     <div className={style.container}>
       <div className={style.volver}><Link to="/home"> <Btns prop="Home" /></Link></div>
